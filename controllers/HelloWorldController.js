@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-router.get("/hello_world", (req, res) => {
+router.get("/", (req, res) => {
   if (!req.errors) {
     res.send("Hello World");
   } else {
