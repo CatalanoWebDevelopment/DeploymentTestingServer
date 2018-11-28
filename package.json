@@ -2,7 +2,7 @@
   "name": "testing-deployment-server",
   "version": "1.0.0",
   "description": "Connecting React.js front-end with Node.js back-end and deploying to Heroku",
-  "main": "index.js",
+  "main": "App.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,9 +26,11 @@
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
-    "nodemon": "^1.18.7",
     "pg": "^7.6.1",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.41.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.7"
   }
 }
