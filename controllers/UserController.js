@@ -70,7 +70,7 @@ router.post("/login", function(req, res) {
 });
 
 /* UPDATE USER */
-router.put("/:id", validateSession, function(req, res) {
+router.put("/:id", function(req, res) {
   if (!req.errors) {
     User.update(req.body.user, { where: { id: req.params.id } })
       .then(user => res.status(200).json(user))

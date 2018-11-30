@@ -11,8 +11,8 @@ const User = require("./controllers/UserController");
 app.use(bodyParser.json());
 app.use(require("./middleware/headers"));
 app.use("/hello_world", HelloWorld);
-app.use(require("./middleware/validate-session"));
 app.use("/user", User);
+app.use(require("./middleware/validate-session"));
 
 require("./associations");
 
