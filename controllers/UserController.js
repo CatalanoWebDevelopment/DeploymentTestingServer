@@ -3,7 +3,6 @@ const router = express.Router();
 const sequelize = require("../db");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const validateSession = require("../middleware/validate-session");
 const User = sequelize.import("../models/user");
 
 /* CREATE USER */
