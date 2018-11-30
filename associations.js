@@ -1,7 +1,7 @@
 const sequelize = require("./db");
-const User = sequelize.model("user");
-const Cigar = sequelize.model("cigar");
-const userCigar = sequelize.model("userCigar");
+const User = sequelize.import("./models/user");
+const Cigar = sequelize.import("./models/cigar");
+const userCigar = sequelize.import("./models/userCigar");
 
 Cigar.belongsToMany(User, { through: userCigar });
 userCigar.belongsTo(User);
