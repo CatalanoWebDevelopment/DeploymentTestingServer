@@ -36,3 +36,5 @@ router.get("/:id", validateSession, function(req, res) {
     .then(cigar => res.status(200).json(cigar))
     .then(err => res.status(500).json({ err }));
 });
+
+module.exports = router;
