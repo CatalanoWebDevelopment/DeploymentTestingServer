@@ -7,12 +7,14 @@ const bodyParser = require("body-parser");
 
 const HelloWorld = require("./controllers/HelloWorldController");
 const User = require("./controllers/UserController");
+const Cigar = require("./controllers/CigarController");
 
 app.use(bodyParser.json());
 app.use(require("./middleware/headers"));
 app.use("/hello_world", HelloWorld);
 app.use("/user", User);
 app.use(require("./middleware/validate-session"));
+app.use("/cigar", Cigar);
 
 require("./associations");
 

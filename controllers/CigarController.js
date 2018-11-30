@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 const sequelize = require("../db");
 const Cigar = sequelize.import("../models/cigar");
+const validateSession = require("../middleware/validate-session");
 
 /* CREATE CIGAR */
-router.post("/create", function(req, res) {
+router.post("/create", validateSession, function(req, res) {
   let name = req.body.cigar.name;
   let ringGauge = req.body.cigar.ringGauge;
   let length = req.body.cigar.length;
@@ -23,14 +24,14 @@ router.post("/create", function(req, res) {
 });
 
 /* GET ALL CIGARS */
-router.get("/all", function(req, res) {
+router.get("/all", validateSession, function(req, res) {
   Cigar.findAll()
     .then(cigar => res.status(200).json(cigar))
     .then(err => res.status(500).json({ err }));
 });
 
 /* GET A SPECIFIC CIGAR */
-router.get("/:id", function(req, res) {
+router.get("/:id", validateSession, function(req, res) {
   Cigar.findOne({ where: { id: req.params.id } })
     .then(cigar => res.status(200).json(cigar))
     .then(err => res.status(500).json({ err }));
