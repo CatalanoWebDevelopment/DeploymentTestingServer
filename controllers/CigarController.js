@@ -1,26 +1,27 @@
 const express = require("express");
 const router = express.Router();
 const sequelize = require("../db");
-const Cigar = sequelize.import("../models/cigar");
 const validateSession = require("../middleware/validate-session");
+const Cigar = sequelize.import("../models/cigar");
 
 /* CREATE CIGAR */
 router.post("/create", validateSession, function(req, res) {
-  let name = req.body.cigar.name;
-  let ringGauge = req.body.cigar.ringGauge;
-  let length = req.body.cigar.length;
-  let strength = req.body.cigar.strength;
-  let wrapperColor = req.body.cigar.wrapperColor;
+  if (!req.errors) {
+    const createdCigar = {
+      name: req.body.cigar.name,
+      ringGauge: req.body.cigar.ringGauge,
+      length: req.body.cigar.length,
+      strength: req.body.cigar.strength,
+      wrapperColor: req.body.cigar.wrapperColor,
+      userId: req.body.cigar.userId
+    };
 
-  Cigar.create({
-    name,
-    ringGauge,
-    length,
-    strength,
-    wrapperColor
-  })
-    .then(cigar => res.status(200).json(cigar))
-    .then(err => res.json(req.errors));
+    Cigar.create(createdCigar)
+      .then(cigar => res.status(200).json(cigar))
+      .then(err => res.json(req.errors));
+  } else {
+    res.status(500).json(req.errors);
+  }
 });
 
 /* GET ALL CIGARS */
