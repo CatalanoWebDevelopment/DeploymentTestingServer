@@ -38,4 +38,26 @@ router.get("/:id", validateSession, function(req, res) {
     .then(err => res.status(500).json({ err }));
 });
 
+/* UPDATE CIGAR */
+router.put("/:id", function(req, res) {
+  if (!req.errors) {
+    Cigar.update(req.body.cigar, { where: { id: req.params.id } })
+      .then(cigar => res.status(200).json(cigar))
+      .then(err => res.status(500).json({ err }));
+  } else {
+    res.status(500).json(req.errors);
+  }
+});
+
+/* DELETE CIGAR */
+router.delete("/:id", function(req, res) {
+  if (!req.errors) {
+    Cigar.destroy({ where: { id: req.params.id } })
+      .then(cigar => res.status(200).json(cigar))
+      .then(err => res.status(500).json({ err }));
+  } else {
+    res.status(500).json(req.errors);
+  }
+});
+
 module.exports = router;
