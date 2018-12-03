@@ -5,6 +5,6 @@ const Cigar = sequelize.import("./models/cigar");
 User.hasMany(Cigar);
 Cigar.belongsTo(User);
 
-sequelize.sync({force: true}).then(() => {
+sequelize.sync().then(() => {
   console.log("Database and Tables Created.");
 });
