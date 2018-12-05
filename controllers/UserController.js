@@ -79,4 +79,11 @@ router.put("/:id", function(req, res) {
   }
 });
 
+/* GET USER */
+router.get("/:id", function(req, res) {
+  User.findOne({ where: { id: req.params.id } })
+  .then(user => res.status(200).json(user))
+  .then(err => res.status(500).json({ err}));
+})
+
 module.exports = router;
