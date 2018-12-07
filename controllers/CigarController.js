@@ -25,8 +25,8 @@ router.post("/create", validateSession, function(req, res) {
 });
 
 /* GET ALL CIGARS */
-router.get("/all", validateSession, function(req, res) {
-  Cigar.findAll()
+router.get("/all/:id", validateSession, function(req, res) {
+  Cigar.findAll({ where: { userId: req.params.id } })
     .then(cigar => res.status(200).json(cigar))
     .then(err => res.status(500).json({ err }));
 });
